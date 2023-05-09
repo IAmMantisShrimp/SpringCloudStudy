@@ -1,0 +1,24 @@
+server:
+    port: 8082
+spring:
+    profiles:
+        active: dev
+    application:
+        name: nacos-config
+    cloud:
+        nacos:
+            config:
+                server-addr: localhost:8848
+                username: nacos
+                password: nacos
+                prefix: nacos-config-a
+                file-extension: yml
+
+
+
+
+# bootstrap.yml  写什么   远端的配置文件写什么?
+# 1.应用名称 spring.application.name
+# 2.nacos的注册和拉取配置文件
+
+# 远端放 端口 数据源 redis mq 能放远端的全放  因为方便管理和修改 包括自定义配置

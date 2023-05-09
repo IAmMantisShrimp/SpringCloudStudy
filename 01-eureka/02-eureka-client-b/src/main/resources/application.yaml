@@ -1,0 +1,16 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 9091
+spring:
+  application:
+    name: eureka-client-b
+# 往eureka服务器中注册
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10

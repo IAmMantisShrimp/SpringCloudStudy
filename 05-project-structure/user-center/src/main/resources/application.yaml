@@ -1,0 +1,16 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 9090
+spring:
+  application:
+    name: user-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+feign:
+  hystrix:
+    enabled: true

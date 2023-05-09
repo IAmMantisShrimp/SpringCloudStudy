@@ -1,0 +1,20 @@
+server:
+  port: 8585
+spring:
+  application:
+    name: login-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka
+    #   是否往eureka里面注册
+    register-with-eureka: true
+    #    是否去拉去服务列表
+    fetch-registry: true
+    #    每隔多少秒去拉取一次列表,为了防止脏读,时间越短,脏读越小,但资源消耗越多
+    registry-fetch-interval-seconds: 10
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10

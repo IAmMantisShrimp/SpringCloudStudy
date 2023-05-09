@@ -1,0 +1,21 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 9091
+spring:
+  application:
+    name: user-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka
+# openFeign只是封装了远程调用的功能,底层还是ribbon所以我们需要去修改ribbon的配置
+# ribbon默认超时时间为1s
+ribbon:
+  #修改调用时长为 5s
+  ReadTimeout: 3000
+  #修改连接时长为 5s
+  ConnectTimeout: 3000
+logging:
+  level:
+#    表示打印这个接口下的日志
+    com/example/feign/UserOrderFeign: info

@@ -1,0 +1,16 @@
+server:
+  port: 8082
+spring:
+  application:
+    # 应用名称
+    name: consumer
+eureka:
+  client:
+    service-url:
+      # 注册到注册中心
+      defaultZone: http://peer1:8761/eureka
+  # 实例信息
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}

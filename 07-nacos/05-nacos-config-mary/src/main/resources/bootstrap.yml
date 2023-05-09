@@ -1,0 +1,50 @@
+#server:
+#    port: 8083
+#spring:
+##    profiles:
+##        active: dev
+#    application:
+#        name: nacos-config-many
+#    cloud:
+#        nacos:
+#            config:
+#                server-addr: localhost:8848
+#                username: nacos
+#                password: nacos
+#                namespace: e7344647-ef02-4981-92af-f63569a0599b # 目前读取多配置文件的方式只支持在同一个命名空间下
+#                file-extension: yml
+#                extension-configs: # 可以读多个配置文件 需要在同一个命名空间下面 可以是不同的组
+#                    -   dataId: user-center-dev.yml
+#                        group: A_GROUP
+#                        refresh: true
+#                    -   dataId: member-center-dev.yml
+#                        group: B_GROUP
+#                        refresh: false  # 不去动态刷新配置文件
+
+
+server:
+    port: 8083
+spring:
+    profiles:
+        active: dev
+    application:
+        name: nacos-config-many
+    cloud:
+        nacos:
+            config:
+                server-addr: localhost:8848
+                username: nacos
+                password: nacos
+                namespace: e7344647-ef02-4981-92af-f63569a0599b # 目前读取多配置文件的方式只支持在同一个命名空间下
+                group: A_GROUP
+                prefix: user-center
+                file-extension: yml
+                shared-configs: # 也需要在这个命名空间下
+#                    - application-dev.yml # 默认组,refresh 默认false
+                    - dataId: application-dev.yml  # 这两种写法都可以
+                      group: DEFAULT_GROUP
+                      refresh: true
+
+
+
+
